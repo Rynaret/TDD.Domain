@@ -7,5 +7,11 @@ export class App{
     }
 
     get priceList(){return this._priceList;}
-    addPriceList(priceList){this._priceList = new PriceList(priceList);}
+    addPriceList(priceList){
+        if(priceList.beginDate === null || priceList.beginDate === undefined){
+            throw new Error('Point Date!');
+        }
+
+        this._priceList = new PriceList(priceList);
+    }
 }

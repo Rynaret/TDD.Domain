@@ -5,8 +5,14 @@ import {App} from '../src/app'
 // администратор может создавать прайс-лист
 suite('When in role "Administrator"', ()=> {
     let user;
+    let appStub;
     setup(()=>{
-        user = new User({role: 'Administrator'});
+        appStub = {
+            addPriceList:()=>{
+                return true;
+            }
+        };
+        user = new User({role: 'Administrator'},appStub);
     });
 
     test('then user can create price list', ()=> {
@@ -29,8 +35,14 @@ suite('When in role "Administrator"', ()=> {
 // обычный пользователь не может создавать прайс-лист
 suite('When in role not "Administrator"', ()=> {
     let user;
+    let appStub;
     setup(()=>{
-        user = new User({role: 'User'});
+        appStub = {
+            addPriceList:()=>{
+                return true;
+            }
+        };
+        user = new User({role: 'User'},appStub);
     });
 
     test('then user can not create price list', ()=> {
@@ -68,4 +80,17 @@ suite("When price list is created", ()=>{
             assert.equal(priceList.beginDate.toDateString(), app.priceList.beginDate.toDateString());
         });
     });
+
+    // при создании нового прайс-листа если не указана дата, то прайс-лист не должен создаваться
+    suite('and begin date is null', ()=>{
+        test('then user get warning "Point Date!"', ()=>{
+            let beginDate = null;
+            let priceList = {beginDate:beginDate};
+
+            let action = ()=>{user.createPriceList(priceList)};
+
+            assert.throws(action, /Point Date!/);
+        });
+    });
 });
+
