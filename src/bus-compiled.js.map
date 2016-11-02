@@ -1,1 +1,0 @@
-{"version":3,"sources":["bus.js"],"names":[],"mappings":";;;;;QAAgB,G,GAAA,G;QAIA,K,GAAA,K;AAJT,SAAS,GAAT,CAAa,GAAb,EAAkB,CAExB;;AAEM,SAAS,KAAT,CAAe,GAAf,EAAoB,CAE1B","file":"bus-compiled.js","sourcesContent":["export function pay(bus) {\n\n}\n\nexport function drive(bus) {\n\n}"]}
