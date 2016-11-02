@@ -7,4 +7,8 @@ export class User{
     createPriceList(){
         return true;
     }
+
+    deletePriceList(){
+        return true;
+    }
 }

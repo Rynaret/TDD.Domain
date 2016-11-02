@@ -2,12 +2,23 @@ import assert from 'assert'
 import {User} from '../src/user'
 
 // администратор может создавать прайс-лист
-suite('When in role "Administrator"', ()=>{
-   test('then user can create price list', ()=>{
-       let user = new User({role:'Administrator'});
+suite('When in role "Administrator"', ()=> {
+    let user;
+    setup(()=>{
+        user = new User({role: 'Administrator'});
+    });
 
-       let result = user.createPriceList();
+    test('then user can create price list', ()=> {
 
-       assert.equal(true, result);
-   });
+        let result = user.createPriceList();
+
+        assert.equal(true, result);
+    });
+    // пользователь может удалить прайс-лист
+    test('then user can delete price list', ()=>{
+
+        let result = user.deletePriceList();
+
+        assert.equal(true, result);
+    });
 });
