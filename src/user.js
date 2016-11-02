@@ -4,11 +4,17 @@ export class User{
         this._role = obj.role;
     }
 
+    get role(){return this._role;}
+
+    isAdministrator(){
+        return this.role === "Administrator";
+    }
+
     createPriceList(){
-        return true;
+        return this.isAdministrator();
     }
 
     deletePriceList(){
-        return true;
+        return this.isAdministrator();
     }
 }

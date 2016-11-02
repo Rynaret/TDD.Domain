@@ -14,7 +14,8 @@ suite('When in role "Administrator"', ()=> {
 
         assert.equal(true, result);
     });
-    // пользователь может удалить прайс-лист
+
+    // администратор может удалить прайс-лист
     test('then user can delete price list', ()=>{
 
         let result = user.deletePriceList();
@@ -22,3 +23,27 @@ suite('When in role "Administrator"', ()=> {
         assert.equal(true, result);
     });
 });
+// обычный пользователь не может создавать прайс-лист
+suite('When in role not "Administrator"', ()=> {
+    let user;
+    setup(()=>{
+        user = new User({role: 'User'});
+    });
+
+    test('then user can not create price list', ()=> {
+
+        let result = user.createPriceList();
+
+        assert.equal(false, result);
+    });
+
+    // обычный пользователь не может удалить прайс-лист
+    test('then user can not delete price list', ()=>{
+
+        let result = user.deletePriceList();
+
+        assert.equal(false, result);
+    });
+});
+// // при создании нового прайс-листа нужно указать дату начала
+// suite()
