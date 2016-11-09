@@ -89,7 +89,7 @@ suite("When price list is created", ()=>{
 
             let action = ()=>{user.createPriceList(priceList)};
 
-            assert.throws(action, /Point Date!/);
+            assert.throws(action, /Point Begin Date!/);
         });
     });
 });
